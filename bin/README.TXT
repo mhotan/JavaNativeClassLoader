@@ -1,10 +1,16 @@
 This directory contains native library folders for alljoyn_java and triumph.
 
-In order to use the Native Class loader file structure must be used likes this.
+In order to use the Native Class loader file structure must be a sub directory of
+the NativeLoader.class package.
 
--- <project dir>/<run time defined path>/
+IE
+-- <NativeLoader.class package path>/lib/
 ---- win-x86/
+------ liballjoyn.dll
+------ libtriumph.dll
 ---- linux-x86/
+------ liballjoyn.so
+------ libtriumph.so
 ---- linux-x86_64/
 ---- linux-ia64/
 
@@ -13,5 +19,5 @@ System.loadLibrary("fubar");
 
 this class allows more flexibility
 
-NativeLoader loader = new NativeLoader("path/to/my/libs");
-loader.loadLibrary("fubar");
+NativeLoader loader = new NativeLoader();
+loader.loadLibrary("fubar"); // Load relative to NativeLoader package name lib/libfubar.so (Linux example)
